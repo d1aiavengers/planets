@@ -1,0 +1,88 @@
+/* Saturn: explicit back-ring → sphere → front-ring 3D stack. */
+.saturn-rings { display: none; }
+
+.planet.saturn {
+  isolation: isolate;
+  overflow: visible;
+  background: none !important;
+  box-shadow: none;
+  transform-style: preserve-3d;
+}
+
+/* Disable prior pseudo-ring treatments; the dedicated layers below own Saturn. */
+.planet.saturn::before,
+.planet.saturn::after { content: none !important; display: none; }
+
+.planet.saturn .saturn-rings {
+  --ring-bands:
+    radial-gradient(ellipse at center,
+      transparent 0 35.5%,
+      rgba(248, 234, 203, .32) 36% 38%,
+      rgba(129, 100, 70, .42) 38.4% 39.4%,
+      rgba(250, 237, 206, .76) 39.8% 42.5%,
+      rgba(157, 125, 88, .45) 43% 44.5%,
+      rgba(238, 219, 180, .74) 45% 48.5%,
+      rgba(117, 88, 61, .48) 49% 50.5%,
+      rgba(247, 228, 188, .58) 51% 56%,
+      rgba(205, 181, 143, .3) 56.5% 60%,
+      rgba(240, 222, 187, .14) 60.5% 64%,
+      transparent 65%);
+  --ring-mask: radial-gradient(ellipse at center, transparent 0 35%, #000 36% 64%, transparent 65%);
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.saturn-ring-back,
+.saturn-ring-front {
+  position: absolute;
+  inset: -25% -45%;
+  display: block;
+  border-radius: 50%;
+  background: var(--ring-bands);
+  box-shadow: 0 0 0 clamp(1px, .18vw, 3px) rgba(255, 239, 207, .15), 0 .4rem .75rem rgba(24, 15, 9, .28);
+  -webkit-mask: var(--ring-mask);
+  mask: var(--ring-mask);
+  transform: perspective(850px) rotateX(67deg) rotateY(-4deg) rotateZ(-9deg);
+  transform-origin: center;
+}
+
+.saturn-ring-back { z-index: 1; opacity: .88; }
+
+.saturn-sphere {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  background: url("assets/planet-textures-atlas.png") 100% 50% / 300% 300% no-repeat;
+  box-shadow: inset -1.35rem -1rem 2rem rgba(29, 19, 11, .68), inset .7rem .5rem 1rem rgba(255, 247, 220, .16), 0 1.4rem 3rem rgba(0, 0, 0, .35);
+}
+
+/* A soft projected ring shadow makes the band appear to meet the atmosphere. */
+.saturn-sphere::after {
+  position: absolute;
+  top: 47%;
+  left: -8%;
+  width: 116%;
+  height: 14%;
+  border-radius: 50%;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(47, 31, 17, .3) 45%, transparent);
+  filter: blur(clamp(2px, .35vw, 5px));
+  opacity: .72;
+  transform: rotate(-9deg) skewY(-10deg);
+}
+
+.saturn-ring-front {
+  z-index: 3;
+  opacity: .96;
+  clip-path: polygon(-10% 49%, 110% 49%, 110% 110%, -10% 110%);
+  filter: drop-shadow(0 .3rem .3rem rgba(18, 10, 5, .36));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planet.saturn .saturn-rings { transform: none; }
+}

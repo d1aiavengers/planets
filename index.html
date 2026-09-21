@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An immersive, accessible guide to the worlds of our Solar System.">
+  <meta property="og:title" content="Solar System Explorer">
+  <meta property="og:description" content="Travel through our cosmic neighbourhood, one world at a time.">
+  <meta name="theme-color" content="#070b1d">
+  <title>Solar System Explorer | Interactive Astronomy Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="saturn.css">
+</head>
+<body>
+  <a class="skip-link" href="#explorer">Skip to explorer</a><div class="starfield" aria-hidden="true"></div>
+  <header class="site-header"><a class="brand" href="#explorer" aria-label="Solar System Explorer home"><span class="brand-mark" aria-hidden="true"></span><span><span class="brand-kicker">Interactive astronomy</span><strong>Solar System Explorer</strong></span></a><p class="header-status"><span aria-hidden="true"></span> Live planetary guide</p></header>
+  <main id="explorer" class="explorer" tabindex="-1">
+    <section class="intro" aria-labelledby="page-title"><p class="eyebrow">Our cosmic neighbourhood</p><h1 id="page-title">Find your place<br>among the <em>planets.</em></h1><p>Choose a world to reveal its story, scale and surprising details. Use the navigation, arrow keys, or the controls below.</p></section>
+    <section class="scene" aria-label="Planet visualisation"><div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div><div class="sun" aria-label="The Sun" role="img"></div><div class="planet-wrap" aria-live="polite"><div id="planet-visual" class="planet mercury" role="img" aria-label="Visual representation of Mercury"><span class="saturn-rings" aria-hidden="true"><span class="saturn-ring-back"></span><span class="saturn-sphere"></span><span class="saturn-ring-front"></span></span></div></div><p class="scene-label"><span aria-hidden="true">✦</span> Planets are not shown to scale</p></section>
+    <section class="planet-summary" aria-labelledby="planet-name"><p id="planet-type" class="eyebrow">01 · Terrestrial planet</p><div class="summary-heading"><p id="planet-count">01 / 09</p><h2 id="planet-name">Mercury</h2></div><p id="planet-description" class="description">The smallest and innermost planet, orbiting closer to the Sun than any other world.</p><div class="summary-actions"><button id="previous" class="icon-button" type="button" aria-label="Previous planet">←</button><button id="open-details" class="primary-button" type="button">Explore Mercury <span aria-hidden="true">↗</span></button><button id="next" class="icon-button" type="button" aria-label="Next planet">→</button></div></section>
+    <nav class="planet-nav" aria-label="Planets and dwarf planets"><div class="nav-heading"><span>Journey outward</span><span>Use ← → to explore</span></div><div id="planet-tabs" class="planet-tabs" role="tablist" aria-label="Choose a celestial body"></div></nav>
+  </main>
+  <dialog id="planet-dialog" class="planet-dialog" aria-labelledby="dialog-name"><article class="dialog-card"><button id="close-details" class="close-button" type="button" aria-label="Close planet details">×</button><div class="dialog-topline"><p id="dialog-number" class="eyebrow">01 · Terrestrial planet</p><span id="dialog-distance">0.39 AU</span></div><h2 id="dialog-name">Mercury</h2><p id="dialog-overview" class="dialog-overview"></p><section aria-labelledby="quick-facts"><h3 id="quick-facts">Quick facts</h3><dl id="fact-grid" class="fact-grid"></dl></section><section aria-labelledby="interesting-facts"><h3 id="interesting-facts">Interesting facts</h3><ul id="interesting-list" class="interesting-list"></ul></section><div class="dialog-controls"><button id="dialog-previous" type="button">← Previous</button><button id="dialog-next" type="button">Next →</button></div></article></dialog>
+  <footer>Solar System Explorer <span>·</span> A small guide to a very large place</footer><script src="script.js"></script>
+</body></html>
